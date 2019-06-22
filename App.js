@@ -1,13 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MainMap from "./components/map/MainMap";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { Overview } from "./components/overview";
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  SafeAreaView
+} from "react-navigation";
 import { Ionicons } from "@expo/vector-icons";
+import { Provider as PaperProvider } from "react-native-paper";
 
 const MainNavigator = createBottomTabNavigator(
   {
-    Home: { screen: MainMap },
-    Map: { screen: MainMap }
+    Overview: { screen: Overview }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -17,13 +21,9 @@ const MainNavigator = createBottomTabNavigator(
         let iconName;
         if (routeName === "Home") {
           iconName = `ios-information-circle${focused ? "" : "-outline"}`;
-          // Sometimes we want to add badges to some icons.
-          // You can check the implementation below.
         } else if (routeName === "Settings") {
           iconName = `ios-options`;
         }
-
-        // You can return any component that you like here!
         return <Ionicons name={iconName} size={30} color={tintColor} />;
       }
     }),
@@ -34,8 +34,17 @@ const MainNavigator = createBottomTabNavigator(
   }
 );
 
-const App = createAppContainer(MainNavigator);
+const AppContainer = createAppContainer(MainNavigator);
 
+class App extends React.Component {
+  render() {
+    return (
+      <PaperProvider>
+        <AppContainer />
+      </PaperProvider>
+    );
+  }
+}
 export default App;
 
 const styles = StyleSheet.create({
