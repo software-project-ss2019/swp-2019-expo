@@ -1,37 +1,33 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import OverviewStack from "./components";
 import {
-  createBottomTabNavigator,
   createStackNavigator,
   createAppContainer,
   SafeAreaView
 } from "react-navigation";
+
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { Provider as PaperProvider } from "react-native-paper";
 
-const MainNavigator = createBottomTabNavigator(
+const MainNavigator = createMaterialBottomTabNavigator(
   {
-    Overview: { screen: OverviewStack }
+    Overview: { screen: OverviewStack },
+    Overview1: { screen: OverviewStack }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        let IconComponent = Ionicons;
-        let iconName;
-        if (routeName === "Home") {
-          iconName = `ios-information-circle${focused ? "" : "-outline"}`;
-        } else if (routeName === "Settings") {
-          iconName = `ios-options`;
-        }
-        return <Ionicons name={iconName} size={30} color={tintColor} />;
-      }
+      tabBarIcon: ({ focused, horizontal, tintColor }) => (
+        <MaterialCommunityIcons name="account" size={30} color={tintColor} />
+      )
     }),
     tabBarOptions: {
       activeTintColor: "tomato",
       inactiveTintColor: "gray"
-    }
+    },
+    shifting: true
   }
 );
 

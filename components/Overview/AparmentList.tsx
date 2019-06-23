@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { List } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
-
-export default function AppartmentList(props) {
-  let flats;
+import { NavigationActions } from "react-navigation";
+interface IProps {
+  flats: any;
+  navigation: any;
+}
+export default function AppartmentList(props: IProps) {
+  let flats = [{}];
 
   // init
   (function() {
-    flats = props.flats.map((item, index) => (
+    flats = props.flats.map((item: any, index: number) => (
       <List.Item
         key={`flat-${index}`}
         title={item.name}
@@ -20,14 +24,14 @@ export default function AppartmentList(props) {
   })();
 
   const [expanded, setExpanded] = useState(
-    flats.reduce((accu, _current, index) => {
+    flats.reduce((accu: any, _current: any, index: number) => {
       accu[index] = false;
       return accu;
     }, {})
   );
 
-  const handlePress = index => {
-    props.navigation.navigate("Appartment", { name: `Appartment ${index}` });
+  const handlePress = (index: number) => {
+    props.navigation.navigate("Appartment", { flat: props.flats[index] });
   };
   return <List.Section>{flats}</List.Section>;
 }
