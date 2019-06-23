@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Overview } from "./components/overview";
+import OverviewStack from "./components";
 import {
   createBottomTabNavigator,
+  createStackNavigator,
   createAppContainer,
   SafeAreaView
 } from "react-navigation";
@@ -11,7 +12,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 
 const MainNavigator = createBottomTabNavigator(
   {
-    Overview: { screen: Overview }
+    Overview: { screen: OverviewStack }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({

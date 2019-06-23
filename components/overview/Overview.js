@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Title } from "react-native-paper";
 import AppartmentList from "./AparmentList";
 
-export default function MainMap(props) {
+export default function Overview(props) {
   return (
     <SafeAreaView>
-      <Text theme={props.theme} style={styles.title}>
-        Overview
-      </Text>
       <AppartmentList
         flats={[
-          { name: "Apartment 1" },
-          { name: "Apartment 2" },
-          { name: "Apartment 3" },
-          { name: "Apartment 4" },
-          { name: "Apartment 5" }
+          { name: "Appartment 1" },
+          { name: "Appartment 2" },
+          { name: "Appartment 3" },
+          { name: "Appartment 4" },
+          { name: "Appartment 5" }
         ]}
+
+        navigation={props.navigation}
       />
     </SafeAreaView>
   );
