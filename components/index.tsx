@@ -33,7 +33,8 @@ const OverviewNavigator = createMaterialBottomTabNavigator(
       activeTintColor: "tomato",
       inactiveTintColor: "gray"
     },
-    shifting: true
+    shifting: true,
+    labeled: false
   }
 );
 
