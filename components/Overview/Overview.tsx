@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { Title } from "react-native-paper";
-import AppartmentList from "./AparmentList";
-import Firebase from "../../helpers/Firebase/Firebase";
+import FlatScroll from "./FlatScroll";
+import { Firestore } from "../../helpers/Firebase";
+import { app } from "firebase";
 interface IProps {
   navigation: any;
 }
 export default function Overview(props: IProps) {
-  const [appartments, setAppartments] = useState([{}]);
+  const [appartments, setAppartments] = useState([]);
   useEffect(() => {
     try {
-      Firebase.flats().then(flats => {
-        console.log(appartments);
-        setAppartments(flats);
+      Firestore.flats().then(appartmentsArr => {
+        setAppartments(appartmentsArr);
       });
     } catch (err) {
       console.error(err);
     }
-  },[]);
-  // console.log(appartments);
+  }, []);
   return (
     <SafeAreaView>
-      <AppartmentList flats={appartments} navigation={props.navigation} />
+      <FlatScroll appartments={appartments} navigation={props.navigation} />
     </SafeAreaView>
   );
 }

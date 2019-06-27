@@ -1,39 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import OverviewStack from "./components";
-import {
-  createStackNavigator,
-  createAppContainer,
-  SafeAreaView
-} from "react-navigation";
-
-import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, View } from "react-native";
+import { createAppContainer } from "react-navigation";
 import { Provider as PaperProvider } from "react-native-paper";
 
-const MainNavigator = createMaterialBottomTabNavigator(
-  {
-    Overview: { screen: OverviewStack },
-    Overview1: { screen: OverviewStack }
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => (
-        <MaterialCommunityIcons name="account" size={30} color={tintColor} />
-      )
-    }),
-    tabBarOptions: {
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray"
-    },
-    shifting: true
-  }
-);
+import { Login, OverviewStack, AppStack } from "./components";
+import { Auth } from "./helpers/Firebase";
 
-const AppContainer = createAppContainer(MainNavigator);
+interface IState {
+  isUserLoggedIn: boolean;
+}
 
-class App extends React.Component {
+const AppContainer = createAppContainer(AppStack);
+
+class App extends React.Component<IState, any> {
   render() {
     return (
       <PaperProvider>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { Title, Text } from "react-native-paper";
 
-export default function AppartmentOverview(props) {
+export default function AppartmentOverview(props: any) {
   const { address, location, name } = props.navigation.getParam("flat", {});
   const { city, country, street, zip } = address;
   return (
