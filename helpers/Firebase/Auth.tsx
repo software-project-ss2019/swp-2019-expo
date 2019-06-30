@@ -28,6 +28,7 @@ export default class Auth {
         store,
         key
       );
+      console.log(userCredentialStorage)
       if (userCredentialStorage) {
         const userCredentialJsonStorage = JSON.parse(userCredentialStorage!);
         if (userCredentialJsonStorage.stsTokenManager.accessToken) {

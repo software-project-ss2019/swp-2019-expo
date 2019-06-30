@@ -29,7 +29,7 @@ const OverviewStack = createStackNavigator({
         <Button
           onPress={async () => {
             try {
-              await Auth.logout("commo64dor@gmail.com");
+              await Auth.logout();
               navigation.navigate("AuthLoading");
             } catch (err) {
               console.error(err);
@@ -67,7 +67,7 @@ const AppStack = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      App: Overview,
+      App: OverviewStack,
       Auth: Login
     },
     {

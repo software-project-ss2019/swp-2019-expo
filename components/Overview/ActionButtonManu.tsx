@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { FAB, Portal, Provider } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
 
 export default function ActionButtonManu(props: any) {
   const [openState, setOpenState] = useState(false);
@@ -17,8 +18,18 @@ export default function ActionButtonManu(props: any) {
               // do something if the speed dial is open
             }
           }}
+          style={styles.fab}
         />
       </Portal>
     </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  fab: {
+    position: "absolute",
+    margin: 8,
+    right: 0,
+    bottom: 0
+  }
+});

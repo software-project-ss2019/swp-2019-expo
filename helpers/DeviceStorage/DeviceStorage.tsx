@@ -8,7 +8,7 @@ interface AsyncStorageModel {
 export default class DeviceStorage {
   static async storeData(store: string, key: string, value: string) {
     try {
-      return await AsyncStorage.setItem(`${store}${key}`, value);
+      return await AsyncStorage.setItem(`${store}:${key}`, value);
     } catch (err) {
       console.error(err);
     }

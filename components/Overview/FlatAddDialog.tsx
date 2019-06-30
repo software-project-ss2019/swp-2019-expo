@@ -1,11 +1,11 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import {
   Button,
   Dialog,
   Paragraph,
   Portal,
-  TextInput
+  TextInput,
 } from "react-native-paper";
 import { Firestore } from "../../helpers/Firebase";
 import { any } from "prop-types";
@@ -57,37 +57,37 @@ export default class FlatAddDialog extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <Portal>
-        <Dialog
-          visible={this.state.visible}
-          onDismiss={() => this.setState({ visible: false })}
-        >
-          <Dialog.Title>Register a new flat</Dialog.Title>
-          <Dialog.Content>
-            <ScrollView>
-              {["name", "street", "zip", "city", "country"].map(item => (
-                <TextInput
-                  key={item}
-                  mode="outlined"
-                  label={item}
-                  value={this.state[item]}
-                  onChangeText={text => {
-                    let newState = {};
-                    newState[item] = text;
-                    this.setState(newState);
-                  }}
-                />
-              ))}
-            </ScrollView>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={this.registerFlat}>Save</Button>
-            <Button onPress={() => this.setState({ visible: false })}>
-              Cancel
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+        <Portal>
+          <Dialog
+            visible={this.state.visible}
+            onDismiss={() => this.setState({ visible: false })}
+          >
+            <Dialog.Title>Register a new flat</Dialog.Title>
+            <Dialog.Content>
+              <ScrollView>
+                {["name", "street", "zip", "city", "country"].map(item => (
+                  <TextInput
+                    key={item}
+                    mode="outlined"
+                    label={item}
+                    value={this.state[item]}
+                    onChangeText={text => {
+                      let newState = {};
+                      newState[item] = text;
+                      this.setState(newState);
+                    }}
+                  />
+                ))}
+              </ScrollView>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={this.registerFlat}>Save</Button>
+              <Button onPress={() => this.setState({ visible: false })}>
+                Cancel
+              </Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
     );
   }
 }

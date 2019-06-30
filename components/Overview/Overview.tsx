@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import { Button, Dialog, Paragraph, Portal } from "react-native-paper";
 import ActionButtonManu from "./ActionButtonManu";
 import FlatScroll from "./FlatScroll";
@@ -14,15 +14,13 @@ export default function Overview(props: IProps) {
 
   useEffect(() => {
     Firestore.flats()
-      .then(flatsArr => {
-        setFlats(flatsArr);
-      })
+      .then(flatsArr => setFlats(flatsArr))
       .catch(err => console.error(err));
   }, []);
 
   return (
-    <SafeAreaView>
-      <FlatScroll appartments={flats} navigation={props.navigation} />
+    <SafeAreaView style={styles.container}>
+      <FlatScroll flats={flats} navigation={props.navigation} />
       <FlatAddDialog ref={flatAddDialogRef} navigation={props.navigation} />
       <ActionButtonManu
         actions={[
@@ -43,15 +41,13 @@ export default function Overview(props: IProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: "100%"
+  },
+  item: {},
   title: {
     alignSelf: "center",
     fontSize: 30,
     padding: 16
-  },
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0
   }
 });

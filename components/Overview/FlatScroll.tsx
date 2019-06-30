@@ -10,24 +10,25 @@ import {
 } from "react-native-paper";
 
 interface IProps {
-  appartments: any;
+  flats: any;
   navigation: any;
 }
 export default function FlatScroll(props: IProps) {
   // init
   const [expanded, setExpanded] = useState(
-    props.appartments.reduce((accu: any, _current: any, index: number) => {
+    props.flats.reduce((accu: any, _current: any, index: number) => {
       accu[index] = false;
       return accu;
     }, {})
   );
 
   const handlePress = (index: number) => {
-    props.navigation.navigate("Appartment", { flat: props.appartments[index] });
+    console.log("press")
+    props.navigation.navigate("Appartment", { flat: props.flats[index] });
   };
   return (
     <FlatList
-      data={props.appartments}
+      data={props.flats}
       keyExtractor={(_item, index) => `flat-card-${index}`}
       renderItem={({ item, index }) => (
         <Card onPress={() => handlePress(index)} style={styles.card}>
