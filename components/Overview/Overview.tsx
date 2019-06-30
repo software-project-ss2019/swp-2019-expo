@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import { FAB } from "../Common";
+import { Button, Dialog, Paragraph, Portal } from "react-native-paper";
+import ActionButtonManu from "./ActionButtonManu";
 import FlatScroll from "./FlatScroll";
-import { Firestore } from "../../helpers/Firebase";
-import { app } from "firebase";
-
+import { Firestore, Auth } from "../../helpers/Firebase";
+import FlatAddDialog from "./FlatAddDialog";
 interface IProps {
   navigation: any;
 }
 export default function Overview(props: IProps) {
   const [flats, setFlats] = useState([]);
+  const flatAddDialogRef = React.createRef();
+
   useEffect(() => {
     Firestore.flats()
       .then(flatsArr => {
@@ -17,18 +19,24 @@ export default function Overview(props: IProps) {
       })
       .catch(err => console.error(err));
   }, []);
+
   return (
     <SafeAreaView>
       <FlatScroll appartments={flats} navigation={props.navigation} />
-      <FAB
-        actions={[{ icon: "add", onPress: () => {
-          try {
-          Firestore.addFlat()
-          props.navigation.navigate("AuthLoading")
-          } catch(err) {
-            console.error(err);
+      <FlatAddDialog ref={flatAddDialogRef} navigation={props.navigation} />
+      <ActionButtonManu
+        actions={[
+          {
+            icon: "add",
+            label: "Add a Flat",
+            onPress: () => flatAddDialogRef.current.makeVisible()
+          },
+          {
+            icon: "account-box",
+            label: "Logout",
+            onPress: () => Auth.logout()
           }
-        } }]}
+        ]}
       />
     </SafeAreaView>
   );

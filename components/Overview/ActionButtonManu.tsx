@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { FAB, Portal, Provider } from "react-native-paper";
 
-export default function FABGroup(props: any) {
+export default function ActionButtonManu(props: any) {
   const [openState, setOpenState] = useState(false);
 
   return (
@@ -9,7 +9,7 @@ export default function FABGroup(props: any) {
       <Portal>
         <FAB.Group
           open={openState}
-          icon={openState ? "today" : "add"}
+          icon={"settings"}
           actions={props.actions}
           onStateChange={({ open }) => setOpenState(open)}
           onPress={() => {

@@ -8,24 +8,9 @@ export default class Firestore {
     return snapshot.docs.map(doc => doc.data());
   }
 
-  static async addFlat() {
-    const flat = {
-      address: {
-        city: "Essen",
-        country: "Germany",
-        street: "Straße 3",
-        zip: "30000"
-      },
-      location: {
-        Latitude: 51.461502,
-        Longitude: 7.014707
-      },
-      name: "Third Flat",
-      locks: null
-    };
+  static async addFlat(flat: any) {
     try {
-      const ref = await db.collection("flats").add(flat);
-      console.log('Added document with ID: ', ref.id);
+      return await db.collection("flats").add(flat);
     } catch (err) {
       console.error(err);
     }

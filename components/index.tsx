@@ -18,29 +18,10 @@ import Login from "./Auth";
 function Test(props: any) {
   return <View />;
 }
-const OverviewNavigator = createMaterialBottomTabNavigator(
-  {
-    Overview: { screen: Overview },
-    Settings: { screen: Test }
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => (
-        <MaterialCommunityIcons name="account" size={30} color={tintColor} />
-      )
-    }),
-    tabBarOptions: {
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray"
-    },
-    shifting: true,
-    labeled: false
-  }
-);
 
 const OverviewStack = createStackNavigator({
   Overview: {
-    screen: OverviewNavigator,
+    screen: Overview,
     navigationOptions: ({ navigation }) => ({
       title: `Overview`,
       headerLeft: null,
@@ -86,7 +67,7 @@ const AppStack = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      App: OverviewStack,
+      App: Overview,
       Auth: Login
     },
     {

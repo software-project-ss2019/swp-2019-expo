@@ -1,3 +1,3 @@
-import FAB from "./FAB";
+import FAB from "../Overview/FAB";
 
 export { FAB };
