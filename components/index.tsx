@@ -44,7 +44,7 @@ const OverviewStack = createStackNavigator({
   Appartment: {
     screen: AppartmentOverview,
     navigationOptions: ({ navigation }) => ({
-      title: navigation.getParam("name", "TEST")
+      title: navigation.getParam("name", "Apartment overview")
     })
   }
 });

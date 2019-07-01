@@ -35,4 +35,23 @@ export default class Firestore {
       console.error(err);
     }
   }
+
+  static async unlock(lockID: string) {
+    try {
+      return await db.collection("locks").doc(lockID).update({
+        isOpen: true
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  static async getLock(lockID: string) {
+    try {
+      const snapshot = await db.collection("locks").doc(lockID).get()
+      return snapshot.data()
+    } catch (err) {
+      console.error(err);
+    }
+  }
 }

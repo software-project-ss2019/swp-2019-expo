@@ -36,7 +36,7 @@ export default function FlatScroll(props: IProps) {
             <Title>{item.name}</Title>
             <Paragraph>{item.address.city}</Paragraph>
           </Card.Content>
-          <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+          <Card.Cover source={{ uri: "https://t-ec.bstatic.com/images/hotel/max1024x768/156/15667677.jpg" }} />
         </Card>
       )}
     />

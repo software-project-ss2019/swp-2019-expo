@@ -22,6 +22,7 @@ export default function Login(props: IProps) {
           placeholder="musterman@gmail.com"
           value={username}
           onChangeText={text => setUsername(text)}
+          autoCompleteType="username"
           style={styles.text}
         />
       </View>
@@ -32,6 +33,8 @@ export default function Login(props: IProps) {
           placeholder="6g!fjsd"
           value={password}
           onChangeText={text => setPassword(text)}
+          autoCompleteType="password"
+          secureTextEntry={true}
           style={styles.text}
         />
       </View>
