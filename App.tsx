@@ -2,9 +2,11 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { Provider as PaperProvider } from "react-native-paper";
-
+import appStore from "./store/appStore";
 import { Login, OverviewStack, AppStack } from "./components";
 import { Auth } from "./helpers/Firebase";
+
+const { Provider } = React.createContext(appStore.getState());
 
 interface IState {
   isUserLoggedIn: boolean;
@@ -12,16 +14,17 @@ interface IState {
 
 const AppContainer = createAppContainer(AppStack);
 
-class App extends React.Component<IState, any> {
+export default class App extends React.Component<IState, any> {
   render() {
     return (
-      <PaperProvider>
-        <AppContainer />
-      </PaperProvider>
+      <Provider store={appStore}>
+        <PaperProvider>
+          <AppContainer />
+        </PaperProvider>
+      </Provider>
     );
   }
 }
-export default App;
 
 const styles = StyleSheet.create({
   container: {

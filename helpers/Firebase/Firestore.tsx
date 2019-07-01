@@ -4,20 +4,11 @@ import "firebase/firestore";
 const db = firebase.firestore();
 export default class Firestore {
   static async flats() {
-    // const userDoc = await Firestore.user("P3UCjk1Kw5O4FOBexmHzG22BDW32");
-
-    // const flats = userDoc.map(user => user.flats)[0];
-    // console.log(flats);
-    // const snapshot = flats.map(async (flatUID: string ) => 
-    //   (await db.doc(`flats/${flatUID.trim()}`).get()).data()
-    // );
-    // return snapshot;
-
     const snapshot = await db
       .collection("flats")
       .where("owner", "==", "P3UCjk1Kw5O4FOBexmHzG22BDW32")
       .get();
-    return snapshot.docs.map(doc => doc.data());
+    return snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() }));
   }
 
   static async user(uid: string) {
@@ -34,5 +25,19 @@ export default class Firestore {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  static async locks(uid: string) {
+    const snapshot = await db
+      .collection("locks")
+      .where("flatID", "==", uid)
+      .get();
+    return snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() }));
+  }
+
+  static async openLock(uid: string) {
+    db.collection("locks")
+      .doc(uid)
+      .update({ isOpen: true });
   }
 }

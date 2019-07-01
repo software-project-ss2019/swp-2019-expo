@@ -33,8 +33,8 @@ export default function FlatScroll(props: IProps) {
       renderItem={({ item, index }) => (
         <Card onPress={() => handlePress(index)} style={styles.card}>
           <Card.Content>
-            <Title>{item.name}</Title>
-            <Paragraph>{item.address.city}</Paragraph>
+            <Title>{item.data.name}</Title>
+            <Paragraph>{item.data.address.city}</Paragraph>
           </Card.Content>
           <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
         </Card>
