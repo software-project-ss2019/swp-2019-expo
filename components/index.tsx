@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import React, { useEffect } from "react";
 import { ActivityIndicator, Button } from "react-native-paper";
 import {
   createAppContainer,
@@ -7,17 +6,11 @@ import {
   createSwitchNavigator
 } from "react-navigation";
 
-import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Auth } from "../helpers/Firebase";
 
 import Overview from "./Overview";
 import AppartmentOverview from "./Appartment";
 import Login from "./Auth";
-
-function Test(props: any) {
-  return <View />;
-}
 
 const OverviewStack = createStackNavigator({
   Overview: {

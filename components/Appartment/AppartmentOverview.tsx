@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import MapView from "react-native-maps";
 import { Title, Text } from "react-native-paper";
+
+import { connect } from "react-redux";
 import { Firestore, Auth } from "../../helpers/Firebase";
 
 import KeyCards from "./KeyCards";
 import ActionButtonManu from "../Common/ActionButtonManu";
 import FlatAddDialog from "../Common/FlatAddDialog";
-
-export default function AppartmentOverview(props: any) {
+function AppartmentOverview(props: any) {
   const flat = props.navigation.getParam("flat", {});
   const { address, location } = flat.data;
   const { id } = flat;
@@ -63,7 +64,7 @@ export default function AppartmentOverview(props: any) {
         />
       </View>
       <View style={styles.item}>
-        <KeyCards locks={locks} />
+        <KeyCards locks={props.locks} />
       </View>
       <FlatAddDialog ref={flatAddDialogRef} navigation={props.navigation} />
       <ActionButtonManu
@@ -83,7 +84,9 @@ export default function AppartmentOverview(props: any) {
     </View>
   );
 }
+const mapStateToProps = (state: any) => ({ locks: state.locks });
 
+export default connect(mapStateToProps)(AppartmentOverview);
 const styles = StyleSheet.create({
   container: {
     display: "flex",
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "space-evenly"
   },
-  textBox :{
+  textBox: {
     flex: 1
   },
   text: {

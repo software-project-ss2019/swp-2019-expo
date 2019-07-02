@@ -1,17 +1,15 @@
+import {
+  SET_FLATS,
+  SET_GUESTS,
+  SET_LOCKS,
+  getFlats
+} from "../actions/appActions";
 const initialState = {
   ownerID: "",
   flats: [],
   locks: [],
   guests: []
 };
-
-const actions = {
-  SET_FLATS: "SET_FLATS",
-  SET_LOCKS: "SET_LOCKS",
-  SET_GUESTS: "SET_GUESTS"
-};
-
-const { SET_FLATS, SET_LOCKS, SET_GUESTS } = actions;
 
 export default function appReducer(state: any, action: any) {
   if (typeof state === "undefined") {
